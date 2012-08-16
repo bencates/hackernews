@@ -1,0 +1,6 @@
+.story
+  .title
+    = link_to story.title, story.url
+    %span.link-domain (#{story.url_domain})
+  .metadata= link_to 'comments', story
+

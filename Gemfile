@@ -29,6 +29,8 @@ end
 
 group :test do
   gem 'rspec-rails', "~> 2.0"
+  gem 'shoulda'
+  gem 'factory_girl_rails'
 
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
