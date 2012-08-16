@@ -37,6 +37,8 @@ group :test do
   gem 'guard-spork'
 end
 
+gem 'haml-rails'
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
