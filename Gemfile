@@ -14,6 +14,8 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
+  gem 'compass-rails'
+
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
@@ -22,9 +24,12 @@ end
 
 group :development do
   gem 'rspec-rails', '~> 2.0'
+
   gem 'guard'
   gem 'growl'
   gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-spork'
 
   gem 'irbtools'
 end
@@ -40,7 +45,6 @@ group :test do
   gem 'database_cleaner'
 
   gem 'spork-rails'
-  gem 'guard-spork'
 end
 
 gem 'haml-rails'

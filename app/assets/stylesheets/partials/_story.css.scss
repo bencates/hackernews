@@ -1,0 +1,28 @@
+.story {
+  @include pie-clearfix;
+  color: gray;
+
+  & > div {
+    display: inline-block;
+  }
+
+  .upvote {
+    @include unstyled-link;
+  }
+
+  .title a {
+    font-size: 1.2em;
+    color: black;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .comments-link {
+    @include unstyled-link;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

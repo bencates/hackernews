@@ -1,0 +1,27 @@
+@include blueprint-typography;
+
+body {
+  @include blueprint-interaction;
+  @include container;
+  margin-top: 15px;
+}
+
+body > header {
+  @include column-base;
+  @include box-sizing(border-box);
+  width: 100%;
+  background-color: $hn-orange;
+  line-height: 1;
+  padding: 4px 6px;
+  h1 {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+}
+
+body > .content {
+  @include column-base;
+  width: 100%;
+  background-color: $hn-beige;
+}

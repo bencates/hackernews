@@ -1,11 +1,12 @@
-.story
+= content_tag defined?(tag_type) ? tag_type : :div, class: 'story' do
   = link_to "▲", upvote_story_url(story), class: 'upvote', method: :post
-  .title
-    = link_to story.title, story.url
-    %span.link-domain (#{story.url_domain})
-  .metadata
-    =pluralize story.karma, 'point'
-    = time_ago_in_words(story.created_at) + ' ago'
-    |
-    = link_to 'comments', story
+  %div
+    .title
+      = link_to story.title, story.url
+      %span.link-domain (#{story.url_domain})
+    .metadata
+      =pluralize story.karma, 'point'
+      = time_ago_in_words(story.created_at) + ' ago'
+      |
+      = link_to 'comments', story, class: 'comments-link'
 

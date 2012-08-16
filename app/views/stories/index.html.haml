@@ -1,4 +1,4 @@
 %ol
   - @stories.each do |story|
-    %li= render partial: 'story', locals: { story: story }
+    = render partial: 'story', locals: { story: story, tag_type: :li }
 
