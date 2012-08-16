@@ -1,4 +1,5 @@
 .story
+  = link_to "▲", upvote_story_url(story), class: 'upvote', method: :post
   .title
     = link_to story.title, story.url
     %span.link-domain (#{story.url_domain})
