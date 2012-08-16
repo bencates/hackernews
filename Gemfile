@@ -20,11 +20,21 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'rspec-rails', '~> 2.0'
+  gem 'guard'
+  gem 'growl'
+  gem 'guard-rspec'
+end
+
 group :test do
   gem 'rspec-rails', "~> 2.0"
 
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+
+  gem 'spork-rails'
+  gem 'guard-spork'
 end
 
 gem 'jquery-rails'
