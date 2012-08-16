@@ -31,5 +31,9 @@ describe StoriesController do
       delete("/1").should route_to("stories#destroy", :id => "1")
     end
 
+    it "routes to #upvote" do
+      post("/1/upvote").should route_to("stories#upvote", id: '1')
+    end
+
   end
 end

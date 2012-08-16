@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  # GET /stories
-  # GET /stories.json
+  # GET /
+  # GET /index.json
   def index
     @stories = Story.all
 
@@ -10,8 +10,8 @@ class StoriesController < ApplicationController
     end
   end
 
-  # GET /stories/1
-  # GET /stories/1.json
+  # GET /1
+  # GET /1.json
   def show
     @story = Story.find(params[:id])
 
@@ -21,8 +21,8 @@ class StoriesController < ApplicationController
     end
   end
 
-  # GET /stories/new
-  # GET /stories/new.json
+  # GET /new
+  # GET /new.json
   def new
     @story = Story.new
 
@@ -32,13 +32,20 @@ class StoriesController < ApplicationController
     end
   end
 
-  # GET /stories/1/edit
+  # GET /1/edit
   def edit
     @story = Story.find(params[:id])
   end
 
-  # POST /stories
-  # POST /stories.json
+  # def upvote
+    # story = Story.find(params[:id])
+    # if story
+      # story.upvote.save
+    # end
+  # end
+
+  # POST /
+  # POST /index.json
   def create
     @story = Story.new(params[:story])
 
@@ -53,8 +60,8 @@ class StoriesController < ApplicationController
     end
   end
 
-  # PUT /stories/1
-  # PUT /stories/1.json
+  # PUT /1
+  # PUT /1.json
   def update
     @story = Story.find(params[:id])
 
@@ -69,11 +76,23 @@ class StoriesController < ApplicationController
     end
   end
 
-  # DELETE /stories/1
-  # DELETE /stories/1.json
+  # DELETE /1
+  # DELETE /1.json
   def destroy
     @story = Story.find(params[:id])
     @story.destroy
+
+    respond_to do |format|
+      format.html { redirect_to stories_url }
+      format.json { head :no_content }
+    end
+  end
+
+  # POST /1/upvote
+  # POST /1/upvote.json
+  def upvote
+    @story = Story.find(params[:id])
+    @story.upvote
 
     respond_to do |format|
       format.html { redirect_to stories_url }

@@ -25,6 +25,8 @@ group :development do
   gem 'guard'
   gem 'growl'
   gem 'guard-rspec'
+
+  gem 'irbtools'
 end
 
 group :test do

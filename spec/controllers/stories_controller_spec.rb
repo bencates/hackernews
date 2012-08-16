@@ -20,6 +20,10 @@ require 'spec_helper'
 
 describe StoriesController do
 
+  before(:each) do
+    @story = create :story
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Story. As you add validations to Story, be sure to
   # update the return value of this method accordingly.
@@ -37,17 +41,15 @@ describe StoriesController do
 
   describe "GET index" do
     it "assigns all stories as @stories" do
-      story = create :story
       get :index, {}, valid_session
-      assigns(:stories).should eq([story])
+      assigns(:stories).should eq([@story])
     end
   end
 
   describe "GET show" do
     it "assigns the requested story as @story" do
-      story = create :story
-      get :show, {:id => story.to_param}, valid_session
-      assigns(:story).should eq(story)
+      get :show, {:id => @story.to_param}, valid_session
+      assigns(:story).should eq(@story)
     end
   end
 
@@ -60,9 +62,8 @@ describe StoriesController do
 
   describe "GET edit" do
     it "assigns the requested story as @story" do
-      story = create :story
-      get :edit, {:id => story.to_param}, valid_session
-      assigns(:story).should eq(story)
+      get :edit, {:id => @story.to_param}, valid_session
+      assigns(:story).should eq(@story)
     end
   end
 
@@ -106,42 +107,37 @@ describe StoriesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested story" do
-        story = Story.create! valid_attributes
         # Assuming there are no other stories in the database, this
         # specifies that the Story created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Story.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => story.to_param, :story => {'these' => 'params'}}, valid_session
+        put :update, {:id => @story.to_param, :story => {'these' => 'params'}}, valid_session
       end
 
       it "assigns the requested story as @story" do
-        story = Story.create! valid_attributes
-        put :update, {:id => story.to_param, :story => valid_attributes}, valid_session
-        assigns(:story).should eq(story)
+        put :update, {:id => @story.to_param, :story => valid_attributes}, valid_session
+        assigns(:story).should eq(@story)
       end
 
       it "redirects to the story" do
-        story = Story.create! valid_attributes
-        put :update, {:id => story.to_param, :story => valid_attributes}, valid_session
-        response.should redirect_to(story)
+        put :update, {:id => @story.to_param, :story => valid_attributes}, valid_session
+        response.should redirect_to(@story)
       end
     end
 
     describe "with invalid params" do
       it "assigns the story as @story" do
-        story = Story.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Story.any_instance.stub(:save).and_return(false)
-        put :update, {:id => story.to_param, :story => {}}, valid_session
-        assigns(:story).should eq(story)
+        put :update, {:id => @story.to_param, :story => {}}, valid_session
+        assigns(:story).should eq(@story)
       end
 
       it "re-renders the 'edit' template" do
-        story = Story.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Story.any_instance.stub(:save).and_return(false)
-        put :update, {:id => story.to_param, :story => {}}, valid_session
+        put :update, {:id => @story.to_param, :story => {}}, valid_session
         response.should render_template("edit")
       end
     end
@@ -149,16 +145,28 @@ describe StoriesController do
 
   describe "DELETE destroy" do
     it "destroys the requested story" do
-      story = Story.create! valid_attributes
       expect {
-        delete :destroy, {:id => story.to_param}, valid_session
+        delete :destroy, {:id => @story.to_param}, valid_session
       }.to change(Story, :count).by(-1)
     end
 
     it "redirects to the stories list" do
-      story = Story.create! valid_attributes
-      delete :destroy, {:id => story.to_param}, valid_session
+      delete :destroy, {:id => @story.to_param}, valid_session
       response.should redirect_to(stories_url)
+    end
+  end
+
+  describe "POST upvote" do
+    it "increments the story's karma" do
+      expect {
+        post :upvote, {:id => @story.to_param}, valid_session
+        @story.reload
+      }.to change(@story, :karma).by(1)
+    end
+
+    it "redirects to the stories list" do
+      post :upvote, {:id => @story.to_param}, valid_session
+      response.should redirect_to stories_url
     end
   end
 

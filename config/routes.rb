@@ -1,5 +1,7 @@
 Hackernews::Application.routes.draw do
-  resources :stories, path: ''
+  resources :stories, path: '' do
+    post 'upvote', on: :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

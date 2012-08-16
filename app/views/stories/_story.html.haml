@@ -2,5 +2,9 @@
   .title
     = link_to story.title, story.url
     %span.link-domain (#{story.url_domain})
-  .metadata= link_to 'comments', story
+  .metadata
+    =pluralize story.karma, 'point'
+    = time_ago_in_words(story.created_at) + ' ago'
+    |
+    = link_to 'comments', story
 

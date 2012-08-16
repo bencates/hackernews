@@ -11,4 +11,10 @@ describe Story do
     story = build :story, url: "http://foo.bar.com/asdf?jkl=123"
     story.url_domain.should == 'foo.bar.com'
   end
+
+  it "should be able to be upvoted" do
+    subject.karma.should == 1
+    subject.upvote
+    subject.karma.should == 2
+  end
 end
