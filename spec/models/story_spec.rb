@@ -15,8 +15,6 @@ describe Story do
   end
 
   it "should be able to be upvoted" do
-    subject.karma.should == 1
-    subject.upvote
-    subject.karma.should == 2
+    expect { subject.upvote }.to change(subject, :karma).by(1)
   end
 end

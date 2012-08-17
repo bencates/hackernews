@@ -1,7 +1,11 @@
 Hackernews::Application.routes.draw do
-  resources :stories, path: '' do
+  match 'new', to: 'stories#index', sort: :new
+
+  resources :stories, path: '', path_names: { new: 'submit' } do
     post 'upvote', on: :member
-    resources :comments
+    resources :comments, shallow: true do
+      post 'upvote', on: :member
+    end
   end
 
   # The priority is based upon order of creation:

@@ -8,7 +8,7 @@ describe StoriesController do
     end
 
     it "routes to #new" do
-      get("/new").should route_to("stories#new")
+      get("/submit").should route_to("stories#new")
     end
 
     it "routes to #show" do

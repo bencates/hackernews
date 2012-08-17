@@ -1,4 +1,6 @@
 class Story < ActiveRecord::Base
+  include Karma
+
   has_many :comments
   attr_accessible :title, :url, :created_at
 
@@ -7,10 +9,5 @@ class Story < ActiveRecord::Base
 
   def url_domain
     URI(url).host
-  end
-
-  def upvote
-    self.karma += 1
-    save
   end
 end

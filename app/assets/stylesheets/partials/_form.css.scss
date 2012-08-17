@@ -5,3 +5,13 @@
 form {
   @include blueprint-form;
 }
+
+#new_comment {
+  @include column(22, true);
+  @include push(1);
+  textarea {
+    @include box-sizing(border-box);
+    @include span(22);
+    height: 100px;
+  }
+}

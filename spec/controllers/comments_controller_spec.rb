@@ -21,6 +21,13 @@ describe CommentsController do
     {}
   end
 
+  describe "GET show" do
+    it "assigns the requested comment as @comment" do
+      get :show, { story_id: @story.to_param, id: @comment.to_param }, valid_session
+      assigns(:comment).should eq(@comment)
+    end
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Comment" do
@@ -57,6 +64,20 @@ describe CommentsController do
         response.should redirect_to(@story)
         flash[:alert].should_not be_empty
       end
+    end
+  end
+
+  describe "POST upvote" do
+    it "increments the comment's karma" do
+      expect {
+        post :upvote, { story_id: @story.to_param, id: @comment.to_param }, valid_session
+        @comment.reload
+      }.to change(@comment, :karma).by(1)
+    end
+
+    it "redirects to the story" do
+      post :upvote, { story_id: @story.to_param, id: @comment.to_param }, valid_session
+      response.should redirect_to story_url @story
     end
   end
 end

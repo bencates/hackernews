@@ -1,11 +1,7 @@
-%p#notice= notice
-
 = render partial: 'story', locals: { story: @story }
 
-= form_for [@story, Comment.new] do |f|
-  = f.text_area :body
-  = f.submit "add comment"
+= render partial: 'comments/form', locals: { parent: @story }
 
-%ul.comments
+%ul#comments
   - @story.comments.each do |comment|
-    %li.comment= comment.body 
+    = render partial: 'comments/comment', locals: { tag_type: :li, comment: comment }

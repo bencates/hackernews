@@ -10,3 +10,10 @@ Feature: Comments
     And I press "add comment"
     Then I should be on the story's page
     And I should see "This is a comment"
+
+	Scenario: Upvoting
+    Given a comment exists
+    And I am on the comment's page
+		When I follow "▲"
+		Then I should be on the comment's page
+		And I should see "2 points"

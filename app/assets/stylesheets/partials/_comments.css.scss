@@ -1,0 +1,8 @@
+#comments {
+  @include column(24, true);
+  @include no-bullets;
+}
+
+.comment {
+  margin-bottom: 1em;
+}

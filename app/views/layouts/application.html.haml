@@ -13,6 +13,10 @@
     %header
       %h1 Hacker News
 
+      %ul.links
+        %li= link_to 'new', '/new'
+        %li= link_to 'submit', new_story_url
+
     %section#content
       #flash
         - flash.each do |type, message|

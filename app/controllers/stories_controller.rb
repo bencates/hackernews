@@ -1,13 +1,16 @@
 class StoriesController < ApplicationController
+  respond_to :html, :json
+
   # GET /
   # GET /index.json
   def index
-    @stories = Story.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @stories }
+    if params[:sort] && params[:sort].to_sym == :new
+      @stories = Story.all
+    else
+      @stories = Story.find :all, order: 'karma DESC'
     end
+
+    respond_with @stories
   end
 
   # GET /1
@@ -15,10 +18,7 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @story }
-    end
+    respond_with @story
   end
 
   # GET /new
@@ -26,23 +26,13 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @story }
-    end
+    respond_with @story
   end
 
   # GET /1/edit
   def edit
     @story = Story.find(params[:id])
   end
-
-  # def upvote
-    # story = Story.find(params[:id])
-    # if story
-      # story.upvote.save
-    # end
-  # end
 
   # POST /
   # POST /index.json

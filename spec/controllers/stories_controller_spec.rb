@@ -44,6 +44,18 @@ describe StoriesController do
       get :index, {}, valid_session
       assigns(:stories).should eq([@story])
     end
+
+    it "orders by karma" do
+      story2 = create :story, karma: 2
+      get :index, {}, valid_session
+      assigns(:stories).should == [story2, @story]
+    end
+
+    it "orders by date if sort is :new" do
+      story2 = create :story, karma: 2
+      get :index, { sort: :new }, valid_session
+      assigns(:stories).should == [@story, story2]
+    end
   end
 
   describe "GET show" do
