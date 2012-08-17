@@ -17,5 +17,5 @@ Feature: Story list
 	Scenario: Upvoting
 		Given I am on the homepage
 		When I follow "▲"
-		Then I should be redirected to the homepage
+		Then I should be on the homepage
 		And I should see "2 points"

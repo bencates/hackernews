@@ -1,4 +1,5 @@
 class Story < ActiveRecord::Base
+  has_many :comments
   attr_accessible :title, :url, :created_at
 
   validates_presence_of :title, :url

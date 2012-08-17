@@ -13,5 +13,10 @@
     %header
       %h1 Hacker News
 
-    %section.content= yield
+    %section#content
+      #flash
+        - flash.each do |type, message|
+          %p{ class: type }= message
+
+      = yield
 

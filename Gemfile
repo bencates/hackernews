@@ -28,7 +28,7 @@ group :development do
   gem 'guard'
   gem 'growl'
   gem 'guard-rspec'
-  gem 'guard-livereload'
+  gem 'guard-cucumber'
   gem 'guard-spork'
 
   gem 'irbtools'

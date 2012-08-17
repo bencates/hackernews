@@ -2,6 +2,10 @@
 
 = render partial: 'story', locals: { story: @story }
 
-= link_to 'Edit', edit_story_path(@story)
-\|
-= link_to 'Back', stories_path
+= form_for [@story, Comment.new] do |f|
+  = f.text_area :body
+  = f.submit "add comment"
+
+%ul.comments
+  - @story.comments.each do |comment|
+    %li.comment= comment.body 

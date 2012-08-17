@@ -4,12 +4,14 @@ body {
   @include blueprint-interaction;
   @include container;
   margin-top: 15px;
+  & > * {
+    @include column-base;
+    width: 100%;
+  }
 }
 
 body > header {
-  @include column-base;
   @include box-sizing(border-box);
-  width: 100%;
   background-color: $hn-orange;
   line-height: 1;
   padding: 4px 6px;
@@ -20,8 +22,11 @@ body > header {
   }
 }
 
-body > .content {
+#content {
+  background-color: $hn-beige;
+}
+
+#flash {
   @include column-base;
   width: 100%;
-  background-color: $hn-beige;
 }
