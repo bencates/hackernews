@@ -169,6 +169,10 @@ describe StoriesController do
   end
 
   describe "POST upvote" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = 'original_url'
+    end
+
     it "increments the story's karma" do
       expect {
         post :upvote, {:id => @story.to_param}, valid_session
@@ -176,9 +180,9 @@ describe StoriesController do
       }.to change(@story, :karma).by(1)
     end
 
-    it "redirects to the stories list" do
+    it "redirects to the referrer" do
       post :upvote, {:id => @story.to_param}, valid_session
-      response.should redirect_to stories_url
+      response.should redirect_to 'original_url'
     end
   end
 

@@ -85,7 +85,7 @@ class StoriesController < ApplicationController
     @story.upvote
 
     respond_to do |format|
-      format.html { redirect_to stories_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
