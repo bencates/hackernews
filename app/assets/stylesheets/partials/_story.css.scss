@@ -7,6 +7,8 @@
   }
 
   .upvote {
+    vertical-align: top;
+    margin-top: 0.2em;
     @include unstyled-link;
   }
 

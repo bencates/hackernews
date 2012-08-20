@@ -5,4 +5,24 @@
 
 .comment {
   margin-bottom: 1em;
+
+  & > div {
+    display: inline-block;
+  }
+
+  .upvote {
+    vertical-align: top;
+    @include unstyled-link;
+    color: gray;
+  }
+
+  .statusline {
+    color: gray;
+    a {
+      @include unstyled-link;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

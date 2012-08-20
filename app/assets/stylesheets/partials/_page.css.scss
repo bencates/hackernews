@@ -16,9 +16,21 @@ body > header {
   line-height: 1;
   padding: 4px 6px;
   h1 {
-    font-size: 1.4em;
+    @include float(left);
+    font-size: 1.2em;
     font-weight: bold;
-    margin-bottom: 0;
+    margin: 0 10px 0 0;
+  }
+  ul {
+    @include float(left);
+    line-height: 1.2em;
+    vertical-align: middle;
+    @include inline-block-list;
+    li {
+      &:after { content: ' |'; }
+      &:last-child:after { content: none; }
+    }
+    a { @include unstyled-link; }
   }
 }
 
