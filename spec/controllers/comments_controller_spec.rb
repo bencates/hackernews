@@ -3,8 +3,8 @@ require 'spec_helper'
 describe CommentsController do
 
   before(:each) do
-    @story = create :story
-    @comment = create :comment, story: @story
+    @comment = create :comment
+    @story = @comment.commentable
   end
 
   # This should return the minimal set of attributes required to create a valid

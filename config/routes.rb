@@ -8,6 +8,10 @@ Hackernews::Application.routes.draw do
     end
   end
 
+  resources :comments, only: [] do
+    resources :comments, only: [:create]
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

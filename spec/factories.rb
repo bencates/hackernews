@@ -5,8 +5,7 @@ FactoryGirl.define do
   end
 
   factory :comment do
-    title "Comment Title"
     body "This is the comment body."
-    story
+    association :commentable, factory: :story
   end
 end
