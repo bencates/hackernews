@@ -1,1 +1,8 @@
-= render partial: 'comment', locals: { comment: @comment }
+= render partial: 'comment', locals: { comment: @comment, hide_children: true }
+
+= render partial: 'form', locals: { parent: @comment }
+
+%ul.comments
+  - @comment.comments.each do |subcomment|
+    = render partial: 'comments/comment', locals: { tag_type: :li, comment: subcomment }
+

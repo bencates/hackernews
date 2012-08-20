@@ -8,3 +8,7 @@
     %br
     = comment.body 
 
+  - unless defined?(hide_children) && hide_children
+    %ul.comments
+      - comment.comments.each do |subcomment|
+        = render partial: 'comments/comment', locals: { tag_type: :li, comment: subcomment }
