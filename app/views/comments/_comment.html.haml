@@ -1,5 +1,5 @@
 = content_tag defined?(tag_type) ? tag_type : :div, class: 'comment' do
-  = link_to "▲", upvote_story_comment_url(comment.story, comment), class: 'upvote', method: :post
+  = link_to "▲", upvote_comment_url(comment), class: 'upvote', method: :post
   %div
     %span.statusline
       = statusline comment

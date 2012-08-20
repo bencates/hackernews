@@ -23,7 +23,7 @@ describe CommentsController do
 
   describe "GET show" do
     it "assigns the requested comment as @comment" do
-      get :show, { story_id: @story.to_param, id: @comment.to_param }, valid_session
+      get :show, { id: @comment.to_param }, valid_session
       assigns(:comment).should eq(@comment)
     end
   end
@@ -68,16 +68,20 @@ describe CommentsController do
   end
 
   describe "POST upvote" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = 'original_url'
+    end
+
     it "increments the comment's karma" do
       expect {
-        post :upvote, { story_id: @story.to_param, id: @comment.to_param }, valid_session
+        post :upvote, { id: @comment.to_param }, valid_session
         @comment.reload
       }.to change(@comment, :karma).by(1)
     end
 
-    it "redirects to the story" do
-      post :upvote, { story_id: @story.to_param, id: @comment.to_param }, valid_session
-      response.should redirect_to story_url @story
+    it "redirects to the referrer" do
+      post :upvote, { id: @comment.to_param }, valid_session
+      response.should redirect_to 'original_url'
     end
   end
 end

@@ -11,10 +11,6 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
-    when /^the comment(?:'s)? page$/
-      comment = model! 'comment'
-      story_comment_url comment.story, comment
-
     # the following are examples using path_to_pickle
 
     when /^#{capture_model}(?:'s)? page$/                           # eg. the forum's page

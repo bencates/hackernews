@@ -29,12 +29,11 @@ class CommentsController < ApplicationController
   # POST /1/comments/1/upvote
   # POST /1/comments/1/upvote.json
   def upvote
-    @story = Story.find(params[:story_id])
-    @comment = @story.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
     @comment.upvote
 
     respond_to do |format|
-      format.html { redirect_to story_url @story }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
